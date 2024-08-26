@@ -12,14 +12,10 @@ if (!fileName || fileName.includes('..')) {
 
 let content = null;
 if (!showError) {
-	try {
-		const filePath = `${path}/${fileName}.md`;
-		if (fs.existsSync(filePath)) {
-			content = marked(fs.readFileSync(filePath, 'utf-8'));
-		} else {
-			showError = true;
-		}
-	} catch {
+	const filePath = `${path}/${fileName}.md`;
+	if (fs.existsSync(filePath)) {
+		content = marked(fs.readFileSync(filePath, 'utf-8'));
+	} else {
 		showError = true;
 	}
 }
