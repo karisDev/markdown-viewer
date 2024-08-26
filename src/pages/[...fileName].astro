@@ -3,7 +3,7 @@ import { marked } from 'marked';
 import fs from "fs";
 
 const path = process.env.MARKDOWN_PATH;
-const { fileName } = Astro.params;
+const { fileName="index" } = Astro.params;
 
 let showError = false;
 if (!fileName || fileName.includes('..') || fileName.includes('/')) {
@@ -31,7 +31,7 @@ if (!showError) {
 	</head>
 	<body class="dark:bg-gray-950 dark:text-white">
 		{
-			content && <article class="prose dark:prose-invert py-16 mx-auto" set:html={content} />
+			content && <article class="prose dark:prose-invert prose-blue py-16 mx-auto" set:html={content} />
 		}
 		{
 			showError && <h1>404 - Not Found</h1>
