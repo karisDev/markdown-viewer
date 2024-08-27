@@ -2,23 +2,13 @@
 import { marked } from "marked";
 import fs from "fs";
 
-const path = process.env.MARKDOWN_PATH;
 const { fileName="index" } = Astro.params;
+const path = process.env.MARKDOWN_PATH;
+const filePath = `${path}/${fileName}.md`;
 
-let showError = false;
-if (!fileName || fileName.includes('..')) {
-	showError = true;
-}
-
-let content = null;
-if (!showError) {
-	const filePath = `${path}/${fileName}.md`;
-	if (fs.existsSync(filePath)) {
-		content = marked(fs.readFileSync(filePath, 'utf-8'));
-	} else {
-		showError = true;
-	}
-}
+if (!fileName.includes('..') && !fileName.includes("~") && fs.existsSync(filePath)) {
+	var content = marked(fs.readFileSync(filePath, 'utf-8'));
+};
 ---
 
 <html lang="en">
@@ -26,15 +16,13 @@ if (!showError) {
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Пояснение</title>
 	</head>
 	<body class="dark:bg-gray-950 dark:text-white">
 		{
-			content && <article class="prose dark:prose-invert prose-blue py-16 mx-auto" set:html={content} />
-		}
-		{
-			showError && <h1>404 - Not Found</h1>
+			content
+				? <article class="prose dark:prose-invert prose-blue py-16 mx-auto" set:html={content} />
+				: <h1 class="text-center text-red-500 font-extrabold text-3xl py-16">Куда лезешь чорт</h1>
 		}
 	</body>
 </html>
