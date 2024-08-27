@@ -17,6 +17,14 @@ if (!fileName.includes('..') && !fileName.includes("~") && fs.existsSync(filePat
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Пояснение</title>
+		<style>
+			@tailwind utilities;
+			@tailwind components;
+
+			body {
+				font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+			}
+		</style>
 	</head>
 	<body class="dark:bg-gray-950 dark:text-white">
 		{
