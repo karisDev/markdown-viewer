@@ -1,15 +1,18 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-
-import node from "@astrojs/node";
+import astroRehypeRelativeMarkdownLinks from 'astro-rehype-relative-markdown-links';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind({
     applyBaseStyles: false
   })],
-  output: "server",
-  adapter: node({
-    mode: "standalone"
-  })
+  output: "static",
+  markdown: {
+    rehypePlugins: [
+      [astroRehypeRelativeMarkdownLinks, {
+        contentPath: "src/content/md"
+      }]
+    ]
+  }
 });

@@ -1,15 +1,24 @@
 ---
-import { marked } from "marked";
-import fs from "fs";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content"
 
-const { fileName="index" } = Astro.params;
-const path = process.env.MARKDOWN_PATH;
-const filePath = `${path}/${fileName}.md`;
 
-if (!fileName.includes('..') && !fileName.includes("~") && fs.existsSync(filePath)) {
-	var content = marked(fs.readFileSync(filePath, 'utf-8'));
-};
+export const getStaticPaths = (async () => {
+	const project = await getCollection("md");
+
+	return project.map((file) => ({
+		params: {
+			fileName: file.slug
+		},
+		props: {file}
+}));
+}) satisfies GetStaticPaths;
+
+const { render } = Astro.props.file;
+
+const { Content } = await render();
 ---
+
 
 <html lang="en">
 	<head>
@@ -26,11 +35,9 @@ if (!fileName.includes('..') && !fileName.includes("~") && fs.existsSync(filePat
 			}
 		</style>
 	</head>
-	<body class="dark:bg-gray-950 dark:text-white">
-		{
-			content
-				? <article class="prose dark:prose-invert prose-blue py-16 mx-auto" set:html={content} />
-				: <h1 class="text-center text-red-500 font-extrabold text-3xl py-16">Куда лезешь чорт</h1>
-		}
-	</body>
+  <body class="dark:bg-gray-950 dark:text-white">
+		<article class="prose dark:prose-invert prose-blue py-16 mx-auto">
+			<Content />
+		</article>
+  </body>
 </html>
