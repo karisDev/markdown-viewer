@@ -11,6 +11,8 @@ services:
     image: ghcr.io/karisDev/markdown-viewer:latest
     volumes:
       - ./md:/app/src/content/md:ro
+    environment:
+      - TITLE=Markdown Viewer
     ports:
       - "8080:80"
 ```
