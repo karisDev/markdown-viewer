@@ -1,0 +1,9 @@
+services:
+  markdown_viewer:
+    build:
+      context: .
+    restart: unless-stopped
+    volumes:
+      - ./md:/app/src/content/md:ro
+    ports:
+      - "8080:80"
