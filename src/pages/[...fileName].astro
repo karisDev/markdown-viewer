@@ -26,13 +26,18 @@ const { Content } = await render();
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<title>{process.env.TITLE}</title>
-		<style>
+		<style is:global>
 			@tailwind utilities;
 			@tailwind components;
 
 			body {
 				font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 			}
+
+			.astro-code {
+				@apply rounded-xl
+			}
+
 		</style>
 	</head>
   <body class="dark:bg-gray-950 dark:text-white">
