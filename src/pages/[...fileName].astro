@@ -8,7 +8,7 @@ export const getStaticPaths = (async () => {
 
 	return project.map((file) => ({
 		params: {
-			fileName: file.slug
+			fileName: file.slug.replace("index", "")
 		},
 		props: {file}
 }));

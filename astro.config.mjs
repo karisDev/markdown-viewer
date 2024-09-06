@@ -9,10 +9,9 @@ export default defineConfig({
   })],
   output: "static",
   markdown: {
-    rehypePlugins: [
-      [astroRehypeRelativeMarkdownLinks, {
-        contentPath: "src/content/md"
-      }]
-    ]
+    rehypePlugins: [[astroRehypeRelativeMarkdownLinks, {
+      contentPath: "src/content/md",
+      collectionPathMode: "root"
+    }]]
   }
 });
