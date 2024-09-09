@@ -8,7 +8,7 @@ export const getStaticPaths = (async () => {
 
 	return project.map((file) => ({
 		params: {
-			fileName: file.slug.replace("index", "")
+			slug: file.slug.replace("index", "")
 		},
 		props: {file}
 }));
@@ -16,7 +16,8 @@ export const getStaticPaths = (async () => {
 
 const { render } = Astro.props.file;
 
-const { Content } = await render();
+const { Content, ...rest } = await render();
+
 ---
 
 
