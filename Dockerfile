@@ -3,7 +3,7 @@ FROM oven/bun:slim AS build
 COPY --from=runtime /static-web-server /
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json bun.lockb ./
 RUN bun install
 COPY . .
 
