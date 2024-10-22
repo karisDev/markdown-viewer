@@ -3,7 +3,7 @@ FROM oven/bun:alpine AS build
 COPY --from=runtime /static-web-server /
 WORKDIR /app
 
-COPY package*.json bun.lockb ./
+COPY package*.json ./
 RUN bun install
 COPY . .
 

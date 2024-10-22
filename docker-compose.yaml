@@ -2,9 +2,9 @@ services:
   markdown_viewer:
     build:
       context: .
-    restart: unless-stopped
+    restart: "no"
     environment:
-      - TITLE=Markdown Viewer
+      TITLE: "Markdown Viewer"
     volumes:
       - ./md:/app/src/content/md:ro
     ports:
