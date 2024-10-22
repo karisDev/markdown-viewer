@@ -23,8 +23,5 @@ export default defineConfig({
       collectionPathMode: "root"
     }]],
     remarkPlugins: [remarkFixIndex]
-  },
-  mdx: {
-    remarkPlugins: [remarkFixIndex]
   }
 });
