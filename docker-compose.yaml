@@ -1,12 +1,13 @@
 services:
   markdown_viewer:
+    platform: "linux/amd64"
     build:
       context: .
     restart: "no"
     environment:
       TITLE: "Markdown Viewer"
     volumes:
-      - ./md:/app/src/content/md:ro
+      - ./public/favicon.svg:/app/public/favicon.svg
+      - ./src/content/md/:/app/src/content/md:ro
     ports:
       - "8080:80"
-    platform: "linux/amd64"
