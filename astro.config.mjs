@@ -25,9 +25,6 @@ export default defineConfig({
     remarkPlugins: [remarkFixIndex]
   },
   mdx: {
-    rehypePlugins: [[astroRehypeRelativeMarkdownLinks, {
-      contentPath: "src/content/md",
-      collectionPathMode: "root"
-    }]],
+    remarkPlugins: [remarkFixIndex]
   }
 });
