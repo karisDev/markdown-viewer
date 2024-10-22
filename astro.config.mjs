@@ -1,4 +1,4 @@
-import { defineConfig, passthroughImageService } from 'astro/config'
+import { defineConfig, sharpImageService } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import astroRehypeRelativeMarkdownLinks from 'astro-rehype-relative-markdown-links';
 import { remarkFixIndex } from './plugins/remarkFixIndex.mjs';
@@ -9,9 +9,8 @@ export default defineConfig({
     applyBaseStyles: false
   })],
   image: {
-    service: passthroughImageService()
+    service: sharpImageService(),
   },
-  output: "static",
   markdown: {
     rehypePlugins: [[astroRehypeRelativeMarkdownLinks, {
       contentPath: "src/content/md",

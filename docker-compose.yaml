@@ -9,3 +9,4 @@ services:
       - ./md:/app/src/content/md:ro
     ports:
       - "8080:80"
+    platform: "linux/amd64"
