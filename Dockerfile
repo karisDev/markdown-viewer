@@ -7,4 +7,6 @@ COPY package*.json bun.lockb ./
 RUN bun install
 COPY . .
 
+RUN bun astro telemetry disable
+
 ENTRYPOINT ["/app/entrypoint.sh"]
